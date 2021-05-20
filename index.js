@@ -5,6 +5,11 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 
+
+// authRoutes
+const authRoutes = require('./routes/auth');
+const { db } = require('./models/User');
+
 // App
 const app = express();
 
@@ -22,6 +27,8 @@ mongoose
 app.use(express.json());
 app.use(cors());
 
+// Routes middleware
+app.use('/api', authRoutes);
 
 // Server listening
 const port = process.env.PORT || 8000;
